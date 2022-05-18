@@ -25,5 +25,5 @@ docker builder prune -f
 # Stagimage
 docker image prune -f
 
-docker build redis -t "$ImageName" . &&
+docker build redis -t "$ImageName" &&
 docker image push "$ImageName"
