@@ -19,7 +19,7 @@ if [ -z "$2" ]; then
 fi
 
 ImageName="$DockerHubUrl/${ProjectName}:${Tag}"
-Ip=$(ipconfig getifaddr en0)
+Ip=$(hostname -i)
 
 echo "ImageName=$ImageName"
 echo "Ip=$Ip"
