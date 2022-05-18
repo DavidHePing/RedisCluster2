@@ -1,0 +1,26 @@
+variables:
+  ProjectName: "rediscluster2"
+
+stages:
+  - build
+  - deploy
+    
+build:
+  stage: build
+  tags:
+    - ubuntu
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  script:
+    - pwd
+    - chmod +x build.sh
+    - ./build.sh $ProjectName $CI_PIPELINE_ID
+
+deploy:
+  stage: deploy
+  tags:
+    - ubuntu
+  script:
+    - pwd
+    - chmod +x run.sh
+    - ./run.sh $ProjectName $CI_PIPELINE_ID
