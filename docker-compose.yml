@@ -6,33 +6,97 @@ services:
     image: "$ImageName" # loading from ".env"
     ports:
       - "7001:7001"
-      - "17001:17001"
-    restart: always
+      - "17001:17001"    
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7001",--cluster-announce-ip,"$ip"]
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
   redis-node2:
     container_name: redis-node2
     image: "$ImageName" # loading from ".env"
     ports:
       - "7002:7002"
-      - "17002:17002"
-    restart: always
+      - "17002:17002"    
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7002",--cluster-announce-ip,"$ip"]
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
   redis-node3:
     container_name: redis-node3
     image: "$ImageName" # loading from ".env"
     ports:
       - "7003:7003"
-      - "17003:17003"
-    restart: always    
+      - "17003:17003"        
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7003",--cluster-announce-ip,"$ip"]
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
   redis-node4:
     container_name: redis-node4
     image: "$ImageName" # loading from ".env"
     ports:
       - "7004:7004"
-      - "17004:17004"
-    restart: always    
+      - "17004:17004"        
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7004",--cluster-announce-ip,"$ip"]
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
     depends_on:
       - redis-node1
       - redis-node2
@@ -42,9 +106,25 @@ services:
     image: "$ImageName" # loading from ".env"
     ports:
       - "7005:7005"
-      - "17005:17005"
-    restart: always    
+      - "17005:17005"        
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7005",--cluster-announce-ip,"$ip"]
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
     depends_on:
       - redis-node1
       - redis-node2
@@ -54,9 +134,25 @@ services:
     image: "$ImageName" # loading from ".env"
     ports:
       - "7006:7006"
-      - "17006:17006"
-    restart: always    
+      - "17006:17006"        
     entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7006", --cluster-announce-ip,"$ip"]    
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
     depends_on:
       - redis-node1
       - redis-node2
@@ -64,6 +160,23 @@ services:
   redis-cluster-creator:
     image: redis    
     entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create "$ip":7001 "$ip":7002 "$ip":7003 "$ip":7004 "$ip":7005 "$ip":7006 --cluster-replicas 1']
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
     depends_on:
       - redis-node1
       - redis-node2

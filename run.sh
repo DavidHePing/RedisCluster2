@@ -21,11 +21,13 @@ fi
 ImageName="$DockerHubUrl/${ProjectName}:${Tag}"
 Ip=$(hostname -i)
 
+echo "ProjectName=$ProjectName"
 echo "ImageName=$ImageName"
 echo "Ip=$Ip"
 
 # .env file docker.compose.yml
-echo "ImageName=$ImageName" > .env # override
+echo "ProjectName=$ProjectName" >. env # override
+echo "ImageName=$ImageName" >> .env # append
 echo "Ip=$Ip" >> .env # append
 
 # execute as a subcommand in order to avoid the variables remain set
@@ -37,10 +39,10 @@ echo "Ip=$Ip" >> .env # append
 
 	docker-compose up -d 
 	
-	# find=$(docker stack ls | grep $StackNname |wc -l)
-	# if [[ $find < 1 ]]; then
-	# 	docker stack deploy -c docker-compose.yml $StackNname
-	# else
-	# 	docker service update --image "$ImageName" --force "${StackNname}_my_service"
-	# fi
+	find=$(docker stack ls | grep $StackNname |wc -l)
+	if [[ $find < 1 ]]; then
+		docker stack deploy -c docker-compose.yml $StackNname
+	else
+		docker service update --image "$ImageName" --force "${StackNname}_my_service"
+	fi
 )
