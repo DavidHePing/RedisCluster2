@@ -19,7 +19,7 @@ if [ -z "$2" ]; then
 fi
 
 ImageName="$DockerHubUrl/${ProjectName}:${Tag}"
-Ip=$(hostname -i)
+Ip=$(hostname -I | awk '{print $1}')
 
 echo "ProjectName=$ProjectName"
 echo "ImageName=$ImageName"
