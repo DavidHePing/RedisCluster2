@@ -19,7 +19,8 @@ if [ -z "$2" ]; then
 fi
 
 ImageName="$DockerHubUrl/${ProjectName}:${Tag}"
-Ip=$(hostname -I | awk '{print $1}')
+# Ip=$(hostname -I | awk '{print $1}')
+Ip=192.168.50.88
 
 # execute as a subcommand in order to avoid the variables remain set
 (
