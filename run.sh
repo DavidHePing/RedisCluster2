@@ -29,6 +29,12 @@ Ip=192.168.50.88
 	export Ip=$Ip
 		
 	docker image pull "$ImageName"	
+
+	#create network
+	findNetWork=$(docker network ls | grep ${ProjectName}_network | wc -1)
+	if[[findNetWork < 1]]; then
+		docker network create -d overlay --attachable "${ProjectName}_network" 
+	fi
 	
 	docker stack deploy -c docker-compose.yml $StackNname
 )

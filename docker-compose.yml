@@ -1,9 +1,7 @@
 version: '3.4'
 
 networks:
-  default:
-    name: "$ProjectName_stack_network"
-    attachable: true
+  - "$ProjectName_network"
 
 services:
   redis-node1:
