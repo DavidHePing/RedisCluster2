@@ -32,7 +32,7 @@ Ip=192.168.50.88
 
 	#create network
 	findNetWork=$(docker network ls | grep ${ProjectName}_network | wc -1)
-	if[[findNetWork < 1]]; then
+	if[[ $findNetWork < 1]]; then
 		docker network create -d overlay --attachable "${ProjectName}_network" 
 	fi
 	
