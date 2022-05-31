@@ -1,7 +1,8 @@
-version: '3.4'
+version: '3.7'
 
 networks:
-  $ProjectName_network:
+  default:
+    name: "$ProjectName_stack_network"
     external: true
 
 services:
@@ -10,9 +11,7 @@ services:
     image: "$ImageName"
     ports:
       - "7001:7001"
-      - "17001:17001"         
-    networks:
-      - $ProjectName_network
+      - "17001:17001"
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7001",--cluster-announce-ip,"$ip"]
     deploy:
       # container count
@@ -33,9 +32,7 @@ services:
     image: "$ImageName"
     ports:
       - "7002:7002"
-      - "17002:17002"    
-    networks:
-      - $ProjectName_network
+      - "17002:17002"
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7002",--cluster-announce-ip,"$ip"]
     deploy:
       # container count
@@ -56,9 +53,7 @@ services:
     image: "$ImageName"
     ports:
       - "7003:7003"
-      - "17003:17003"     
-    networks:
-      - $ProjectName_network   
+      - "17003:17003"
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7003",--cluster-announce-ip,"$ip"]
     deploy:
       # container count
@@ -79,9 +74,7 @@ services:
     image: "$ImageName"
     ports:
       - "7004:7004"
-      - "17004:17004"     
-    networks:
-      - $ProjectName_network   
+      - "17004:17004"
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7004",--cluster-announce-ip,"$ip"]
     deploy:
       # container count
@@ -106,9 +99,7 @@ services:
     image: "$ImageName"
     ports:
       - "7005:7005"
-      - "17005:17005" 
-    networks:
-      - $ProjectName_network       
+      - "17005:17005"   
     entrypoint: [redis-server, /etc/redis/rediscluster.conf,--port,"7005",--cluster-announce-ip,"$ip"]
     deploy:
       # container count
@@ -133,9 +124,7 @@ services:
     image: "$ImageName"
     ports:
       - "7006:7006"
-      - "17006:17006"  
-    networks:
-      - $ProjectName_network      
+      - "17006:17006"   
     entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7006", --cluster-announce-ip,"$ip"]    
     deploy:
       # container count
