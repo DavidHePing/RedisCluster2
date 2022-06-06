@@ -1,9 +1,9 @@
 version: '3.7'
 
 networks:
-  default:
-    name: "$ProjectName_stack_network"
-    attachable: true
+  outside:
+    external:
+      name: "host"
 
 services:
   redis-node1:
