@@ -1,13 +1,15 @@
 version: '3.7'
 
 networks:
-  default:
-    name: "$ProjectName_stack_network"
-    attachable: true
+  myNetWork:
+    driver: overlay
+    external: true
 
 services:
   redis-node1:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7001:7001"
       - "17001:17001"
@@ -28,6 +30,8 @@ services:
         window: 30s
   redis-node2:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7002:7002"
       - "17002:17002"
@@ -48,6 +52,8 @@ services:
         window: 30s
   redis-node3:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7003:7003"
       - "17003:17003"
@@ -68,6 +74,8 @@ services:
         window: 30s
   redis-node4:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7004:7004"
       - "17004:17004"
@@ -92,6 +100,8 @@ services:
       - redis-node3
   redis-node5:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7005:7005"
       - "17005:17005"   
@@ -116,6 +126,8 @@ services:
       - redis-node3 
   redis-node6:
     image: "$ImageName"
+    networks:
+      - myNetWork
     ports:
       - "7006:7006"
       - "17006:17006"   
