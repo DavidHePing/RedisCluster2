@@ -8,8 +8,6 @@ networks:
 services:
   redis-node1:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7001:6379"
       - "17001:16379"
@@ -30,8 +28,6 @@ services:
         window: 30s
   redis-node2:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7002:6379"
       - "17002:16379"
@@ -52,8 +48,6 @@ services:
         window: 30s
   redis-node3:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7003:6379"
       - "17003:16379"
@@ -74,8 +68,6 @@ services:
         window: 30s
   redis-node4:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7004:6379"
       - "17004:16379"
@@ -100,8 +92,6 @@ services:
       - redis-node3
   redis-node5:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7005:6379"
       - "17005:16379"   
@@ -126,8 +116,6 @@ services:
       - redis-node3 
   redis-node6:
     image: "$ImageName"
-    networks:
-      - myNetWork
     ports:
       - "7006:6379"
       - "17006:16379"   
