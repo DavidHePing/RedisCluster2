@@ -13,7 +13,7 @@ services:
     ports:
       - "7001:6379"
       - "17001:16379"
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7001",--cluster-announce-bus-port,"17001",--cluster-announce-ip,"$ip"]
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7001",--cluster-announce-bus-port,"17001",--cluster-announce-ip,"$Ip"]
     deploy:
       # container count
       replicas: 1
@@ -35,7 +35,7 @@ services:
     ports:
       - "7002:6379"
       - "17002:16379"
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7002",--cluster-announce-bus-port,"17002",--cluster-announce-ip,"$ip"]
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7002",--cluster-announce-bus-port,"17002",--cluster-announce-ip,"$Ip"]
     deploy:
       # container count
       replicas: 1
@@ -57,7 +57,7 @@ services:
     ports:
       - "7003:6379"
       - "17003:16379"
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7003",--cluster-announce-bus-port,"17003",--cluster-announce-ip,"$ip"]
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7003",--cluster-announce-bus-port,"17003",--cluster-announce-ip,"$Ip"]
     deploy:
       # container count
       replicas: 1
@@ -79,7 +79,7 @@ services:
     ports:
       - "7004:6379"
       - "17004:16379"
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7004",--cluster-announce-bus-port,"17004",--cluster-announce-ip,"$ip"]
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7004",--cluster-announce-bus-port,"17004",--cluster-announce-ip,"$Ip"]
     deploy:
       # container count
       replicas: 1
@@ -105,7 +105,7 @@ services:
     ports:
       - "7005:6379"
       - "17005:16379"   
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7005",--cluster-announce-bus-port,"17005",--cluster-announce-ip,"$ip"]
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf,--cluster-announce-port,"7005",--cluster-announce-bus-port,"17005",--cluster-announce-ip,"$Ip"]
     deploy:
       # container count
       replicas: 1
@@ -131,7 +131,7 @@ services:
     ports:
       - "7006:6379"
       - "17006:16379"   
-    entrypoint: [redis-server, /etc/redis/rediscluster.conf, --cluster-announce-port,"7006",--cluster-announce-bus-port,"17006",--cluster-announce-ip,"$ip"]    
+    entrypoint: [redis-server, /etc/redis/rediscluster.conf, --cluster-announce-port,"7006",--cluster-announce-bus-port,"17006",--cluster-announce-ip,"$Ip"]    
     deploy:
       # container count
       replicas: 1
@@ -152,7 +152,7 @@ services:
       - redis-node3
   # redis-cluster-creator:
   #   image: redis    
-  #   entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create "$ip":7001 "$ip":7002 "$ip":7003 "$ip":7004 "$ip":7005 "$ip":7006 --cluster-replicas 1']
+  #   entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create "$Ip":7001 "$Ip":7002 "$Ip":7003 "$Ip":7004 "$Ip":7005 "$Ip":7006 --cluster-replicas 1']
   #   deploy:
   #     # container count
   #     replicas: 1
