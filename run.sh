@@ -30,11 +30,11 @@ Ip=192.168.50.88
 		
 	docker image pull "$ImageName"	
 
-	creat external network
-	findnw=$(docker network ls | grep myNetWork |wc -l)
-	if [[ $findnw < 1 ]]; then	
-		docker network create -d overlay --attachable "myNetWork"
-	fi	
+	# creat external network
+	# findnw=$(docker network ls | grep myNetWork |wc -l)
+	# if [[ $findnw < 1 ]]; then	
+	# 	docker network create -d overlay --attachable "myNetWork"
+	# fi	
 	
 	docker stack deploy -c docker-compose.yml $StackNname
 )

@@ -1,9 +1,9 @@
 version: '3.7'
 
 networks:
-  myNetWork:
-    driver: overlay
-    external: true
+  default:
+    name: "$ProjectName_stack_network"
+    attachable: true
 
 services:
   redis-node1:
@@ -150,27 +150,27 @@ services:
       - redis-node1
       - redis-node2
       - redis-node3
-  # redis-cluster-creator:
-  #   image: redis    
-  #   entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create "$Ip":7001 "$Ip":7002 "$Ip":7003 "$Ip":7004 "$Ip":7005 "$Ip":7006 --cluster-replicas 1']
-  #   deploy:
-  #     # container count
-  #     replicas: 1
-  #     update_config:
-  #       # update container count in once time
-  #       parallelism: 1 
-  #       order: start-first
-  #       failure_action: rollback
-  #       delay: 10s
-  #     restart_policy:
-  #       condition: any
-  #       delay: 5s
-  #       max_attempts: 3
-  #       window: 30s
-  #   depends_on:
-  #     - redis-node1
-  #     - redis-node2
-  #     - redis-node3
-  #     - redis-node4
-  #     - redis-node5
-  #     - redis-node6
+  redis-cluster-creator:
+    image: redis    
+    entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create "$Ip":7001 "$Ip":7002 "$Ip":7003 "$Ip":7004 "$Ip":7005 "$Ip":7006 --cluster-replicas 1']
+    deploy:
+      # container count
+      replicas: 1
+      update_config:
+        # update container count in once time
+        parallelism: 1 
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
+    depends_on:
+      - redis-node1
+      - redis-node2
+      - redis-node3
+      - redis-node4
+      - redis-node5
+      - redis-node6
